@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" data-bs-theme="light">
+<html lang="en" data-bs-theme="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
       </style>
     <!--- navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container-fluid fw-bolder">
             <a class="navbar-brand" href="index.html"><img src="PersonalLogo.jpeg" alt="Logo" width="40" height="40"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -72,15 +72,43 @@
     <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
     <script>
   document.getElementById('darkModeIcon').addEventListener('click', function () {
-    this.classList.toggle('bi-moon');
-    this.classList.toggle('bi-sun');
-    let theme = document.documentElement.getAttribute('data-bs-theme');
-    if (theme === 'dark') {
-      document.documentElement.removeAttribute('data-bs-theme');
+  // Toggle the sun and moon icons
+  this.classList.toggle('bi-moon');
+  this.classList.toggle('bi-sun');
+
+  // Get current theme from documentElement
+  let theme = document.documentElement.getAttribute('data-bs-theme');
+
+  // Toggle between light and dark themes
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-bs-theme', 'light');
+    localStorage.setItem('theme', 'light'); // Save to localStorage
+  } else {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+    localStorage.setItem('theme', 'dark'); // Save to localStorage
+  }
+});
+
+// On page load, check for saved theme in localStorage
+document.addEventListener("DOMContentLoaded", function () {
+  const savedTheme = localStorage.getItem("theme");
+  
+  // If a theme is saved, set it
+  if (savedTheme) {
+    document.documentElement.setAttribute("data-bs-theme", savedTheme);
+    
+    // Update icon based on the saved theme
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    if (savedTheme === "dark") {
+      darkModeIcon.classList.add('bi-sun');
+      darkModeIcon.classList.remove('bi-moon');
     } else {
-      document.documentElement.setAttribute('data-bs-theme', 'dark');
+      darkModeIcon.classList.add('bi-moon');
+      darkModeIcon.classList.remove('bi-sun');
     }
-  });
+  }
+});
+
    // Wait for the DOM to be fully loaded
    document.addEventListener('DOMContentLoaded', (event) => {
             // Get the element to annotate
