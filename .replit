@@ -6,3 +6,15 @@ channel = "stable-24_05"
 
 [deployment]
 run = ["sh", "-c", "run"]
+
+[workflows]
+runButton = "Serve Website"
+
+[[workflows.workflow]]
+name = "Serve Website"
+author = 24338719
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd pages && python -m http.server 5000"
