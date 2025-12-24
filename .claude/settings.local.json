@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(start index.html)",
-      "Bash(start \"c:\\\\Users\\\\PC\\\\mwende\\\\pages\\\\index.html\")"
-    ]
-  }
-}
